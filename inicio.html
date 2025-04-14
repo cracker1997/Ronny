@@ -1,0 +1,271 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Para Nosotros</title>
+  <style>
+    @import url('https://fonts.googleapis.com/css2?family=Pacifico&display=swap');
+
+    body {
+      margin: 0;
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      background-color: #fdfdfd;
+      overflow-x: hidden;
+      position: relative;
+      transition: background-color 0.5s, color 0.5s;
+    }
+
+    .dark-mode {
+      background-color: #222;
+      color: #fdfdfd;
+    }
+
+    .heart {
+      position: fixed;
+      width: 15px;
+      height: 15px;
+      background-color: pink;
+      transform: rotate(45deg);
+      animation: fall 8s linear infinite;
+      z-index: 1;
+    }
+    .heart:before,
+    .heart:after {
+      content: "";
+      position: absolute;
+      width: 15px;
+      height: 15px;
+      background-color: pink;
+      border-radius: 50%;
+    }
+    .heart:before {
+      top: -7.5px;
+      left: 0;
+    }
+    .heart:after {
+      left: -7.5px;
+      top: 0;
+    }
+
+    @keyframes fall {
+      0% {
+        top: -10%;
+        left: calc(100% * var(--x));
+        opacity: 1;
+      }
+      100% {
+        top: 110%;
+        left: calc(100% * var(--x) + 30px);
+        opacity: 0;
+      }
+    }
+
+    .container {
+      text-align: center;
+      padding: 30px 20px;
+      z-index: 2;
+      position: relative;
+    }
+
+    .names {
+      font-family: 'Pacifico', cursive;
+      font-size: 2.8rem;
+      color: #d6336c;
+      margin-top: 20px;
+    }
+
+    .slideshow {
+      margin-top: 40px;
+      max-width: 100%;
+    }
+
+    .slideshow img {
+      width: 320px;
+      height: 400px;
+      object-fit: cover;
+      border-radius: 20px;
+      transition: opacity 1s ease-in-out;
+      cursor: pointer;
+    }
+
+    .image-message {
+      position: fixed;
+      top: 20%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      background-color: rgba(255, 192, 203, 0.95);
+      padding: 20px 30px;
+      border-radius: 15px;
+      font-size: 1.2rem;
+      color: #222;
+      z-index: 999;
+      box-shadow: 0 4px 10px rgba(0,0,0,0.2);
+      display: none;
+      animation: fadeInOut 3s ease-in-out forwards;
+    }
+
+    @keyframes fadeInOut {
+      0% { opacity: 0; }
+      10% { opacity: 1; }
+      90% { opacity: 1; }
+      100% { opacity: 0; }
+    }
+
+    .time-together {
+      margin-top: 40px;
+      font-size: 1.3rem;
+    }
+
+    .calendar-icons {
+      font-size: 1.2rem;
+      margin-top: 10px;
+    }
+
+    .calendar-icons::before {
+      content: "📆 ";
+    }
+
+    .message {
+      margin-top: 40px;
+      font-size: 1.2rem;
+      color: #555;
+      padding: 0 15px;
+    }
+  </style>
+</head>
+<body>
+  <audio autoplay loop id="bg-music">
+    <source src="ccs/tu-cancion.mp3"audio/mpeg">
+    Tu navegador no soporta audio HTML5.
+  </audio>
+
+  <div class="container">
+    <div class="names">Kevin & Ronny</div>
+
+    <div class="slideshow">
+      <img id="slide" src="ccs/imagen1.jpg" alt="Foto juntos">
+    </div>
+
+    <div class="time-together">
+      <p><strong>💖 Llevamos juntos:</strong></p>
+      <div class="calendar-icons" id="counter"></div>
+    </div>
+
+    <div class="message">
+      <p>
+        Amor mío, esta página es solo un pequeño reflejo de todo lo que siento por ti.
+        Cada día contigo es un regalo, y esta es mi forma de agradecerte por tanto amor, apoyo y sonrisas.
+        Eres mi persona favorita, mi paz y mi aventura.Mi negro hermoso cada día contigo es especial, estoy totalmente 
+        enamorado de ti eres todo lo que yo necesitaba
+        en mi vida, me das calma, seguridad, alegría y sobre todo amor mucho amor quiero corresponderte todo lo lindo
+        que me has dado hasta hoy no quiero perderte por ningún descuido o algún error. Solo quiero amarte y hacerte
+        feliz esta vida y las otras, TE AMO como no tienes idea mas que con el corazón te amo con toda mi alma, daría
+        hasta mi vida si es por ti, no dejare que los problemas afecten lo nuestro. Llegaste cuando menos me lo esperaba,
+        cuando no deseaba nada, cuando deje de creer en el amor, pero sin embargo entraste en lo profundo de mi corazón
+        para demostrarme lo que en verdad es el amor. TE AMO MUCHO.
+        Feliz dos meses juntos amor como digo cada día contigo es muy especial nunca me cansare de mirarte, cuidarte,
+        hacerte sonreír, pero sobre todo amarte. TE AMO TE AMO TE AMO
+        <br><br>
+        Te amo con todo mi corazón. ❤️
+        <br><br>
+        Att. Tu Osito 📬
+      </p>
+    </div>
+  </div>
+
+  <div id="imageMessage" class="image-message"></div>
+
+  <script>
+    const images = [
+      'ccs/imagen1.jpg', 
+      'ccs/imagen2.jpg', 
+      'ccs/imagen3.jpg', 
+      'ccs/imagen4.jpg', 
+      'ccs/imagen5.jpg',
+      'ccs/imagen6.jpg', 
+      'ccs/imagen7.jpg', 
+      'ccs/imagen8.jpg', 
+      'ccs/imagen9.jpg', 
+      'ccs/imagen10.jpg'
+    ];
+
+    const mensajes = [
+      "Nuestro primer viaje juntos ❤️",
+      "Ese día reímos hasta que nos dolió la panza 😂",
+      "Tu mirada me derrite 😍",
+      "Un momento inolvidable 💖",
+      "Te abrazaría mil veces más 🥰",
+      "Ese beso fue mágico 💋",
+      "Nuestro lugar favorito 🌅",
+      "Nunca dejo de pensar en ti 💭",
+      "Juntos somos invencibles 💪",
+      "Para siempre tú y yo 💍"
+    ];
+
+    let current = 0;
+    const slide = document.getElementById('slide');
+    slide.addEventListener('click', showImageMessage);
+
+    setInterval(() => {
+      slide.style.opacity = 0;
+      setTimeout(() => {
+        current = (current + 1) % images.length;
+        slide.src = images[current];
+        slide.style.opacity = 1;
+      }, 500);
+    }, 5000);
+
+    for (let i = 0; i < 30; i++) {
+      const heart = document.createElement('div');
+      heart.className = 'heart';
+      heart.style.setProperty('--x', Math.random());
+      heart.style.left = `${Math.random() * 100}vw`;
+      heart.style.animationDelay = `${Math.random() * 5}s`;
+      document.body.appendChild(heart);
+    }
+
+    const startDate = new Date("2025-02-14");
+    const now = new Date();
+
+    function getTimeTogether(start, end) {
+      let years = end.getFullYear() - start.getFullYear();
+      let months = end.getMonth() - start.getMonth();
+      let days = end.getDate() - start.getDate();
+
+      if (days < 0) {
+        months--;
+        days += new Date(end.getFullYear(), end.getMonth(), 0).getDate();
+      }
+
+      if (months < 0) {
+        years--;
+        months += 12;
+      }
+
+      return { years, months, days };
+    }
+
+    const timeTogether = getTimeTogether(startDate, now);
+    document.getElementById('counter').innerHTML = `
+      <strong>${timeTogether.years}</strong> años,
+      <strong>${timeTogether.months}</strong> meses,
+      <strong>${timeTogether.days}</strong> días 💘`;
+
+    function showImageMessage() {
+      const msgBox = document.getElementById("imageMessage");
+      msgBox.innerText = mensajes[current];
+      msgBox.style.display = "block";
+      msgBox.style.animation = "none";
+      msgBox.offsetHeight; // trigger reflow
+      msgBox.style.animation = null;
+      msgBox.style.animation = "fadeInOut 3s ease-in-out forwards";
+    }
+
+    const hour = new Date().getHours();
+    if (hour >= 20 || hour < 6) {
+      document.body.classList.add('dark-mode');
+    }
+  </script>
+</body>
+</html>
